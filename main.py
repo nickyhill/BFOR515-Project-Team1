@@ -131,3 +131,15 @@ plt.ylabel('True Label')
 plt.show()
 print("Classification Report:\n", classification_report(y_test, y3_pred))
 print("\n\n\n\n")
+
+#create variables X and Y for independent and dependent variables
+X = df_clean[predictor_cols].copy()
+Y = df[target].copy()
+
+#create constant values X by passing X into add_constant function
+X = sm.add_constant(X)
+
+#fit the logistic regression model
+logit_model = sm.Logit(Y, X).fit()
+
+print(logit_model.summary())
